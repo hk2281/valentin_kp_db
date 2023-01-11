@@ -1,0 +1,42 @@
+# base image  
+FROM python:3.10
+# setup environment variable  
+ENV DockerHOME=/home/app/webapp  
+RUN useradd -m postgres
+
+# set work directory  
+RUN mkdir -p $DockerHOME  
+
+# where your code lives  
+WORKDIR $DockerHOME  
+
+# set environment variables  
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1  
+
+# install dependencies  
+RUN pip install --upgrade pip  
+
+# copy whole project to your docker home directory. 
+COPY . $DockerHOME
+
+RUN apt-get -y update
+RUN apt-get -y upgrade
+RUN apt-get -y install sudo
+
+# run this command to install all dependencies  
+RUN pip install -r r.txt  
+
+RUN apt install -y postgresql postgresql-contrib
+
+RUN chmod +777 migrate.sh
+
+COPY base.html /usr/local/lib/python3.10/site-packages/jazzmin/templates/admin/base.html
+COPY index.html /usr/local/lib/python3.10/site-packages/jazzmin/templates/admin/index.html
+
+run 
+# VOLUME /workspaces /home/app/webapp/test
+# port where the Django app runs  
+EXPOSE 8000 
+# start server  
+CMD sudo service postgresql start && ./migrate.sh && python manage.py runserver 0.0.0.0:8000 

@@ -20,7 +20,7 @@ class a_Resources(admin.ModelAdmin):
 
 class a_Provider(admin.ModelAdmin):
     list_display = [
-        'provider','name','contact','address'
+        'provider','name','contact','address','Product'
     ]
 
 class a_Client(admin.ModelAdmin):
@@ -30,7 +30,7 @@ class a_Client(admin.ModelAdmin):
 
 class a_Product(admin.ModelAdmin):
     list_display = [
-        'product','name','cost','amount'
+        'product','name','cost','amount','aplience','resource'
     ]
 
 

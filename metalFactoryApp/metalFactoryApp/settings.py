@@ -27,8 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS =[
-    'https://hk2281-psychic-space-trout-r7q666gqqx6c5jp6-8000.preview.app.github.dev'
+
+CSRF_TRUSTED_ORIGINS=[
+    'https://hk2281-psychic-space-trout-r7q666gqqx6c5jp6-8000.preview.app.github.dev',
+    'https://stefan1308-glorious-sniffle-j69vjp7456g2jpwr-8000.preview.app.github.dev',
+    'https://valentindmitrievich-expert-space-robot-w94jr75w79r29p7j-8000.preview.app.github.dev'
 ]
 
 ADMIN_LANGUAGE_CODE = 'ru-RU'
@@ -129,10 +132,21 @@ WSGI_APPLICATION = "metalFactoryApp.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'test2', 
+        'USER': 'sammy', 
+        'PASSWORD': 'root1234',
+        'HOST': '127.0.0.1', 
+        'PORT': '5432',
     }
 }
 
